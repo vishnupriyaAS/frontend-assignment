@@ -10,22 +10,28 @@ const App = () => {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [currentMovie, setCurrentMovie] = useState();
 
-  const MOST_RECENT_API = "https://api.themoviedb.org/3/movie/latest?api_key=7315ec59ea2264da1fa4f4eb8d647853&language=en-US";
-  const SEARCH_API = "https://api.themoviedb.org/3/search/movie?&api_key=7315ec59ea2264da1fa4f4eb8d647853&query=";
+  const MOST_RECENT_API = "https://api.themoviedb.org/3/movie/latest?api_key=&language=en-US";
+  const SEARCH_API = "https://api.themoviedb.org/3/search/movie?&api_key=&query=";
 
   useEffect(() => {
 	  getMovies(MOST_RECENT_API)
 	}, []);
 
-    const getMovies= (API) => {
-		fetch(API)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-       data.results.length = 12;
-        setMovies(data.results);
-      });
-	}
+    const getMovies= async (props) =>
+    {
+      try
+      {
+        const response = await fetch(props);
+        const data = await response.json();
+        setMovies([...data.results]);
+      } catch (err)
+      {
+        console.log(err.message)
+      }
+    
+    
+    }
+
     
   
   const handleOnSubmit = (e) => {
