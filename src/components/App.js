@@ -10,7 +10,7 @@ const App = () => {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [currentMovie, setCurrentMovie] = useState();
 
-  const MOST_RECENT_API = "https://api.themoviedb.org/3/movie/latest?api_key=&language=en-US";
+  const MOST_RECENT_API = "https://api.themoviedb.org/3/search/movie?api_key=&query=all";
   const SEARCH_API = "https://api.themoviedb.org/3/search/movie?&api_key=&query=";
 
   useEffect(() => {
